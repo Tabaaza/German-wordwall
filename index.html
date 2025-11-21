@@ -136,7 +136,7 @@
 </div>
 
 <script>
-const FILE_URL = "/mnt/data/german-english2.txt";  // uploaded file
+const FILE_URL = "/mnt/data/file-2.txt";  // uploaded file
 
 let themes = [];
 let cards = [];
@@ -190,16 +190,16 @@ function parseNewFormat(text){
     }
 
     /* Satz */
-    if(line.startsWith("◦ Satz:")){
+    if(line.startsWith("*  Satz:")){
       let last = currentTheme.items[currentTheme.items.length-1];
-      last.satz = line.replace("◦ Satz:","").trim();
+      last.satz = line.replace("*  Satz:","").trim();
       continue;
     }
 
     /* Translation */
-    if(line.startsWith("◦ Translation:")){
+    if(line.startsWith("*  Translation:")){
       let last = currentTheme.items[currentTheme.items.length-1];
-      last.satz_en = line.replace("◦ Translation:","").trim();
+      last.satz_en = line.replace("*  Translation:","").trim();
       continue;
     }
   }
