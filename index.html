@@ -155,57 +155,65 @@ function rtfToText(raw){
     .replace(/\r/g,"\n");
 }
 
-function parseNewFormat(text){
-  const lines = text.split("\n")
-    .map(l=>l.trim())
-    .filter(l=>l.length>0);
+function parseNewFormat(text) {
+  const lines = text
+    .split("\n")
+    .map(l => l.trim())
+    .filter(l => l.length > 0);
 
-  const themeRegex = /^\d+\.\s*(.+)$/;
-  const itemRegex  = /^\d+\s+(.+?)\s*-\s*(.+)$/;
-
+  const themes = [];
   let currentTheme = null;
-  let list = [];
+  let lastItem = null;
 
-  for(let i=0;i<lines.length;i++){
+  const themeRegex = /^\*\s*\d+\.\s*(.+)$/;         // * 1. Menschen ...
+  const vocabRegex = /^\*\s*(.+?)\s*-\s*(.+)$/;     // * der Mann - the man
+  const satzRegex = /^\*\s*Satz:\s*(.+)$/i;         // * Satz: ...
+  const translRegex = /^\*\s*Translation:\s*(.+)$/i;// * Translation: ...
+
+  for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
 
-    /* Theme detection */
+    /* THEME HEADER */
     const tm = line.match(themeRegex);
-    if(tm){
-      if(currentTheme) list.push(currentTheme);
-      currentTheme = { title: tm[1], items: [] };
+    if (tm) {
+      currentTheme = {
+        title: tm[1].trim(),
+        items: []
+      };
+      themes.push(currentTheme);
+      lastItem = null;
       continue;
     }
 
-    /* Word item line */
-    const im = line.match(itemRegex);
-    if(im && currentTheme){
-      currentTheme.items.push({
-        g: im[1].trim(),
-        e: im[2].trim(),
+    /* VOCAB LINE */
+    const vm = line.match(vocabRegex);
+    if (vm && currentTheme) {
+      lastItem = {
+        g: vm[1].trim(),
+        e: vm[2].trim(),
         satz: "",
         satz_en: ""
-      });
+      };
+      currentTheme.items.push(lastItem);
       continue;
     }
 
-    /* Satz */
-    if(line.startsWith("*  Satz:")){
-      let last = currentTheme.items[currentTheme.items.length-1];
-      last.satz = line.replace("*  Satz:","").trim();
+    /* SATZ */
+    const sm = line.match(satzRegex);
+    if (sm && lastItem) {
+      lastItem.satz = sm[1].trim();
       continue;
     }
 
-    /* Translation */
-    if(line.startsWith("*  Translation:")){
-      let last = currentTheme.items[currentTheme.items.length-1];
-      last.satz_en = line.replace("*  Translation:","").trim();
+    /* TRANSLATION */
+    const tm2 = line.match(translRegex);
+    if (tm2 && lastItem) {
+      lastItem.satz_en = tm2[1].trim();
       continue;
     }
   }
 
-  if(currentTheme) list.push(currentTheme);
-  return list;
+  return themes;
 }
 
 /* -----------------------------
