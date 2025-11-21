@@ -306,4 +306,4 @@
 	◦	Satz: Die letzte Frage war sehr schwierig.
 	◦	Translation: The last question was very difficult.
 	100	erfolgreich - successful
-* Satz: Sie ist eine erfolgreiche Geschäftsfrau. * Translation: She is a successful businesswoman.
+* Satz: Sie ist eine erfolgreiche Geschäftsfrau.* Translation: She is a successful businesswoman.
