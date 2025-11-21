@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>German ↔ English Reels — Flashcards</title>
+<style>
+  :root{
+    --bg1: #071028;
+    --bg2: #081226;
+    --card-bg: rgba(255,255,255,0.02);
+    --accent: #8bd3c7;
+    --muted: #a6b0c3;
+    --glass: rgba(255,255,255,0.03);
+    --card-radius: 18px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eaf2ff;-webkit-font-smoothing:antialiased;}
+  .app {height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; }
+
+  /* viewer */
+  .viewer {
+    width:min(720px, 96vw);
+    height:min(820px, 92vh);
+    border-radius:var(--card-radius);
+    position:relative;
+    overflow:hidden;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    box-shadow: 0 18px 60px rgba(3,8,20,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  /* cards container (stacked absolute) */
+  #cardsRoot { position: absolute; inset:0; display:block; }
+
+  .card {
+    position:absolute;
+    left:0; right:0; top:0; bottom:0;
+    margin:auto;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    transition: transform 420ms cubic-bezier(.2,.9,.18,1), opacity 300ms;
+    -webkit-tap-highlight-color: transparent;
+    padding: 28px;
+    text-align:center;
+  }
+
+  .card.hidden { opacity:0; pointer-events:none; transform: translateY(12%); }
+
+  /* Theme title (top-center) */
+  .theme {
+    text-align:center;
+    width:100%;
+    padding-top:4px;
+    padding-bottom:12px;
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+  }
+  .theme .title {
+    display:inline-block;
+    padding:8px 14px;
+    border-radius:999px;
+    background:var(--glass);
+    color: var(--muted);
+    font-weight:600;
+    font-size:14px;
+    backdrop-filter: blur(6px);
+  }
+
+  /* central content area (remaining space) */
+  .content {
+    flex:1 1 auto;
+    display:flex;
+    flex-direction:column;
+    justify-content:center; /* center vertically within remaining area */
+    align-items:center;
+    padding: 14px 8%;
+  }
+
+  .german {
+    font-size: clamp(28px, 6.8vw, 56px);
+    font-weight:700;
+    margin:0;
+    line-height:1.02;
+    letter-spacing:-0.02em;
+    text-shadow: 0 6px 30px rgba(3,6,20,0.55);
+  }
+  .gender-and-type {
+    color:var(--muted);
+    margin-top:8px;
+    font-size:13px;
+  }
+  .english {
+    margin-top:16px;
+    font-size: clamp(14px, 3.2vw, 20px);
+    color:var(--accent);
+    font-weight:600;
+  }
+
+  .back {
+    margin-top:18px;
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.4;
+    max-width:78%;
+    display:none;
+  }
+
+  /* top controls and hints */
+  .topbar { position:absolute; left:18px; top:18px; display:flex; gap:10px; align-items:center; z-index:30; }
+  .chip { background:var(--glass); padding:8px 12px; border-radius:999px; font-size:13px; color:var(--muted); box-shadow: inset 0 1px 0 rgba(255,255,255,0.02); }
+  .hint { position:absolute; right:18px; top:18px; font-size:13px; color:var(--muted); background:var(--glass); padding:8px 12px; border-radius:10px; }
+
+  .bottombar { position:absolute; left:14px; right:14px; bottom:14px; display:flex; gap:12px; align-items:center; justify-content:space-between; }
+  .progress { flex:1; height:8px; background: rgba(255,255,255,0.03); border-radius:999px; overflow:hidden; margin-right:12px; }
+  .progress > i { display:block; height:100%; width:0%; background: linear-gradient(90deg, rgba(139,211,199,0.95), rgba(140,200,240,0.95)); transition: width 340ms ease; }
+
+  .controls { display:flex; gap:8px; align-items:center; }
+  .btn { border:1px solid rgba(255,255,255,0.06); background:transparent; padding:8px 10px; border-radius:10px; color:var(--muted); font-size:13px; cursor:pointer; }
+
+  /* small mobile adjustments */
+  @media (max-width:520px){
+    .viewer { border-radius:12px; height:92vh; width:96vw; padding:12px; }
+    .german { font-size: clamp(24px, 8.4vw, 44px); }
+    .theme .title { font-size:13px; padding:6px 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="viewer" id="viewer" aria-live="polite">
+    <div class="topbar">
+      <div class="chip" id="countChip">0 / 0</div>
+      <div class="chip" id="modeChip">Swipe ↑ / ↓</div>
+    </div>
+    <div class="hint">Tap to flip • Arrow keys • Wheel • Touch</div>
+
+    <div id="cardsRoot" aria-hidden="false"></div>
+
+    <div class="bottombar">
+      <div class="progress" aria-hidden="true"><i id="progressFill"></i></div>
+      <div class="controls">
+        <button class="btn" id="prevBtn">Prev</button>
+        <button class="btn" id="nextBtn">Next</button>
+        <button class="btn" id="shuffleBtn">Shuffle</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/*
+  Enhanced parser: reads RTF-ish text fetched from /mnt/data/german-english.rtf
+  Produces an array of themes: [{title: '1.🛒 Shopping and Groceries', items:[{g:..., e:...}, ...]}, ...]
+  Then flattens into per-word cards while keeping theme title on each card (Option C).
+*/
+
+const RTF_URL = '/mnt/data/german-english.rtf'; // using your uploaded file path
+const cardsRoot = document.getElementById('cardsRoot');
+const countChip = document.getElementById('countChip');
+const progressFill = document.getElementById('progressFill');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const shuffleBtn = document.getElementById('shuffleBtn');
+const viewer = document.getElementById('viewer');
+
+let themes = [];
+let flatItems = []; // {themeTitle, g, e, raw}
+let index = 0;
+let animLock = false;
+
+// Fallback minimal content
+const fallbackThemes = [
+  { title: '1.🛒 Shopping and Groceries', items: [
+    {g:'das Brot', e:'bread'}, {g:'die Milch', e:'milk'}, {g:'der Apfel', e:'apple'}
+  ] }
+];
+
+function rtfToPlain(text){
+  // Tolerant RTF -> plain text conversion: remove RTF control words & braces, preserve basic punctuation and dashes
+  // This is intentionally lenient for your uploaded file format.
+  try {
+    let t = text;
+    t = t.replace(/\\par[d]?/g, '\n');
+    t = t.replace(/\\'[0-9a-fA-F]{2}/g, ''); // escaped chars
+    t = t.replace(/\\[a-zA-Z]+\d* ?/g, ''); // control words
+    t = t.replace(/[{}]/g, '');
+    t = t.replace(/\r/g,'\n');
+    return t;
+  } catch(e){
+    console.warn('rtfToPlain error', e);
+    return text;
+  }
+}
+
+function parseThemesFromPlain(plain){
+  const lines = plain.split(/\n+/).map(l => l.replace(/\u00A0/g,' ').replace(/\t/g,' ').trim()).filter(Boolean);
+  const parsedThemes = [];
+  let current = null;
+
+  // detect theme lines like "1.🛒 Shopping and Groceries" or "1. 🛒 Shopping and Groceries" or "1. Shopping..."
+  const themeRegex = /^\s*\d+\.\s*(.*)$/;
+
+  lines.forEach(line => {
+    // Skip "Core Vocabulary:" markers
+    if (/core vocabulary[:]?/i.test(line) || /^other verbs/i.test(line) || /^useful phrases/i.test(line)) {
+      // treat as non-theme, continue
+      return;
+    }
+
+    // If a new theme heading
+    const m = line.match(themeRegex);
+    if (m && line.length < 120 && /[A-Za-z\u00C0-\u017F0-9\p{Emoji}]/u.test(line)) {
+      // Start new theme
+      if (current) parsedThemes.push(current);
+      current = { title: m[1].trim() || line.trim(), items: [] };
+      return;
+    }
+
+    // If we have a current theme, look for item lines with dash separator
+    if (current){
+      // unify dash chars
+      const normalized = line.replace(/—|–/g, ' - ').replace(/\s*-\s*/, ' - ');
+      // Accept lines that contain " - " or "–" or "—" OR lines that look like a vocab entry "das Brot – bread"
+      const dashMatch = normalized.match(/(.+?)\s-\s(.+)/);
+      if (dashMatch) {
+        const left = dashMatch[1].trim();
+        const right = dashMatch[2].trim();
+        // skip extremely long left strings
+        if (left.length && left.length < 140 && right.length) {
+          current.items.push({ g: left, e: right, raw: line });
+          return;
+        }
+      } else {
+        // Also accept lines with ' – ' (unicode) or " – "
+        const uni = line.replace(/\u2013|\u2014/g, ' - ');
+        const m2 = uni.match(/(.+?)\s-\s(.+)/);
+        if (m2) {
+          current.items.push({ g: m2[1].trim(), e: m2[2].trim(), raw: line });
+          return;
+        }
+      }
+      // Some lines are category-only, or continued info; ignore them
+    } else {
+      // no current theme and not a theme heading: try to detect a top-level heading with emoji like "1.🛒 Shopping..."
+      const altTheme = line.match(/^\s*\d+\.\s*.+/);
+      if (altTheme) {
+        current = { title: line.replace(/^\s*\d+\.\s*/,'').trim(), items: []};
+      }
+    }
+  });
+
+  if (current) parsedThemes.push(current);
+  return parsedThemes;
+}
+
+function flattenThemes(th){
+  const flat = [];
+  th.forEach(theme => {
+    theme.items.forEach(it => {
+      flat.push({ themeTitle: theme.title, g: it.g, e: it.e, raw: it.raw || '' });
+    });
+  });
+  return flat;
+}
+
+function renderCards(){
+  cardsRoot.innerHTML = '';
+  flatItems.forEach((it, i) => {
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.setAttribute('data-index', i);
+    // position stack
+    card.style.transform = `translateY(${(i - index) * 110}%)`;
+    card.style.opacity = Math.abs(i - index) > 2.2 ? '0' : '1';
+
+    // theme title at top (Option C)
+    const themeBar = document.createElement('div');
+    themeBar.className = 'theme';
+    const tspan = document.createElement('div');
+    tspan.className = 'title';
+    tspan.textContent = it.themeTitle || '';
+    themeBar.appendChild(tspan);
+
+    // content area (centered horizontally & vertically in remaining area)
+    const content = document.createElement('div');
+    content.className = 'content';
+
+    const g = document.createElement('h1');
+    g.className = 'german';
+    g.textContent = it.g;
+
+    const meta = document.createElement('div');
+    meta.className = 'gender-and-type';
+    meta.textContent = ''; // available later if needed
+
+    const eng = document.createElement('div');
+    eng.className = 'english';
+    eng.textContent = it.e;
+
+    const back = document.createElement('div');
+    back.className = 'back';
+    back.textContent = ''; // parser could provide example later
+
+    content.appendChild(g);
+    content.appendChild(meta);
+    content.appendChild(eng);
+    content.appendChild(back);
+
+    // assemble
+    card.appendChild(themeBar);
+    card.appendChild(content);
+
+    // flip on tap
+    card.addEventListener('click', (ev) => {
+      // toggle translation/back
+      if (back.style.display === 'block') {
+        back.style.display = 'none';
+        eng.style.opacity = '1';
+      } else {
+        back.style.display = 'block';
+        eng.style.opacity = '0.95';
+      }
+    });
+
+    cardsRoot.appendChild(card);
+  });
+  updateUI();
+}
+
+function updateUI(){
+  const total = flatItems.length;
+  countChip.textContent = `${index + 1} / ${total || 0}`;
+  const pct = total ? Math.round(((index + 1) / total) * 100) : 0;
+  progressFill.style.width = pct + '%';
+  // re-position cards
+  document.querySelectorAll('.card').forEach(c => {
+    const i = Number(c.dataset.index);
+    const offset = i - index;
+    c.style.transition = 'transform 420ms cubic-bezier(.2,.9,.18,1), opacity 260ms';
+    c.style.transform = `translateY(${offset * 110}%)`;
+    c.style.opacity = Math.abs(offset) > 1.8 ? '0' : '1';
+    c.classList.toggle('hidden', Math.abs(offset) > 2.5);
+  });
+}
+
+/* navigation */
+function goNext(){
+  if (animLock) return;
+  index = (index + 1) % flatItems.length;
+  updateUI();
+}
+function goPrev(){
+  if (animLock) return;
+  index = (index - 1 + flatItems.length) % flatItems.length;
+  updateUI();
+}
+nextBtn.addEventListener('click', goNext);
+prevBtn.addEventListener('click', goPrev);
+shuffleBtn.addEventListener('click', () => {
+  // shuffle flatItems but keep themes associated
+  for (let i = flatItems.length -1; i>0; i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [flatItems[i], flatItems[j]] = [flatItems[j], flatItems[i]];
+  }
+  index = 0;
+  renderCards();
+});
+
+/* wheel + keyboard + touch */
+let wheelLock = false;
+viewer.addEventListener('wheel', (e) => {
+  if (wheelLock) return;
+  if (e.deltaY > 10) goNext();
+  else if (e.deltaY < -10) goPrev();
+  wheelLock = true;
+  setTimeout(()=> wheelLock = false, 260);
+});
+
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown' || e.key === 'PageDown') goNext();
+  if (e.key === 'ArrowUp' || e.key === 'PageUp') goPrev();
+  if (e.key === ' ') { e.preventDefault(); goNext(); }
+});
+
+// touch swipe
+let startY = null, startT = 0;
+viewer.addEventListener('touchstart', (e) => {
+  if (e.touches && e.touches[0]) {
+    startY = e.touches[0].clientY;
+    startT = Date.now();
+  }
+}, {passive:true});
+viewer.addEventListener('touchmove', (e) => { /* allow preventing scroll if wanted */ }, {passive:true});
+viewer.addEventListener('touchend', (e) => {
+  if (startY === null) return;
+  const endY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientY : null;
+  if (endY === null) { startY = null; return; }
+  const dy = endY - startY;
+  const dt = Date.now() - startT;
+  if (Math.abs(dy) > 40 && dt < 900) {
+    if (dy < 0) goNext(); else goPrev();
+  }
+  startY = null;
+});
+
+/* load process: try fetch RTF -> parse -> build themes -> flatten -> render */
+async function loadFromRtf(){
+  try {
+    const res = await fetch(RTF_URL);
+    if (!res.ok) throw new Error('fetch failed ' + res.status);
+    const raw = await res.text();
+    const plain = rtfToPlain(raw);
+    const parsed = parseThemesFromPlain(plain);
+    if (parsed.length && parsed.some(t => t.items && t.items.length)){
+      themes = parsed;
+    } else {
+      themes = fallbackThemes;
+    }
+  } catch (err) {
+    console.warn('Could not fetch/parse RTF, using fallback. Error:', err);
+    themes = fallbackThemes;
+  }
+
+  flatItems = flattenThemes(themes);
+  if (!flatItems.length){
+    // safety fallback
+    flatItems = [{themeTitle:'Sample', g:'das Brot', e:'bread'}];
+  }
+  index = 0;
+  renderCards();
+}
+
+/* Start */
+loadFromRtf();
+
+</script>
+</body>
+</html>
