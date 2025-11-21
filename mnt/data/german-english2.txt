@@ -1,0 +1,309 @@
+1. Menschen & Beziehungen (People & Relationships)
+	1	der Verwandte / die Verwandte - the relative
+	◦	Satz: Meine Verwandten wohnen in einer anderen Stadt.
+	◦	Translation: My relatives live in another city.
+	2	der Kollege / die Kollegin - the colleague
+	◦	Satz: Ich gehe heute mit meiner Kollegin zum Mittagessen.
+	◦	Translation: I'm going to lunch with my colleague today.
+	3	der Nachbar / die Nachbarin - the neighbor
+	◦	Satz: Unsere Nachbarin hält unsere Pflanzen, wenn wir im Urlaub sind.
+	◦	Translation: Our neighbor waters our plants when we are on vacation.
+	4	die Persönlichkeit - the personality
+	◦	Satz: Sie hat eine sehr fröhliche Persönlichkeit.
+	◦	Translation: She has a very cheerful personality.
+	5	die Beziehung - the relationship
+	◦	Satz: Sie haben eine gute Beziehung zu ihren Kindern.
+	◦	Translation: They have a good relationship with their children.
+	6	streiten - to argue
+	◦	Satz: Die Geschwister streiten sich oft um das Zimmer.
+	◦	Translation: The siblings often argue about the room.
+	7	sich versöhnen - to reconcile
+	◦	Satz: Nach dem Missverständnis haben sie sich versöhnt.
+	◦	Translation: After the misunderstanding, they reconciled.
+	8	unterstützen - to support
+	◦	Satz: Meine Familie unterstützt mich immer bei meinen Entscheidungen.
+	◦	Translation: My family always supports me in my decisions.
+	9	heiraten - to marry
+	◦	Satz: Nächstes Jahr werden sie heiraten.
+	◦	Translation: Next year they will get married.
+	10	sich trennen - to separate
+	◦	Satz: Das Paar hat sich nach zehn Jahren getrennt.
+	◦	Translation: The couple separated after ten years.
+2. Alltag & Routine (Daily Life & Routine)
+	11	der Alltag - the daily routine
+	◦	Satz: Im Alltag habe ich oft wenig Zeit.
+	◦	Translation: In my daily routine, I often have little time.
+	12	die Hausarbeit - the housework
+	◦	Satz: Am Samstag erledige ich die Hausarbeit.
+	◦	Translation: On Saturdays, I do the housework.
+	13	staubsaugen - to vacuum
+	◦	Satz: Ich muss heute das Wohnzimmer staubsaugen.
+	◦	Translation: I have to vacuum the living room today.
+	14	auf/räumen - to tidy up
+	◦	*Satz:Räum bitte dein Zimmer auf.
+	◦	Translation: Please tidy up your room.
+	15	der Müll - the garbage
+	◦	Satz: Kannst du bitte den Müll rausbringen?
+	◦	Translation: Can you please take out the garbage?
+	16	der Haushalt - the household
+	◦	Satz: Sie führt den Haushalt sehr effizient.
+	◦	Translation: She manages the household very efficiently.
+	17	einkaufen gehen - to go shopping
+	◦	Satz: Wir gehen einkaufen, weil der Kühlschrank leer ist.
+	◦	Translation: We are going shopping because the fridge is empty.
+	18	die Schlange - the queue
+	◦	Satz: An der Kasse steht eine lange Schlange.
+	◦	Translation: There is a long queue at the checkout.
+	19	sich beeilen - to hurry up
+	◦	Satz: Wir müssen uns beeilen, sonst verpassen wir den Zug.
+	◦	Translation: We have to hurry up, otherwise we'll miss the train.
+	20	pünktlich - punctual
+	◦	Satz: Der Zug ist heute pünktlich angekommen.
+	◦	Translation: The train arrived on time today.
+3. Arbeit & Beruf (Work & Profession)
+	21	der Beruf - the profession
+	◦	Satz: Mein Beruf macht mir viel Spaß.
+	◦	Translation: I enjoy my profession a lot.
+	22	die Stelle - the job position
+	◦	Satz: Ich habe mich auf eine neue Stelle beworben.
+	◦	Translation: I applied for a new job position.
+	23	die Bewerbung - the application
+	◦	Satz: Meine Bewerbung wurde sofort beantwortet.
+	◦	Translation: My application was answered immediately.
+	24	das Vorstellungsgespräch - the job interview
+	◦	Satz: Nächste Woche habe ich ein Vorstellungsgespräch.
+	◦	Translation: I have a job interview next week.
+	25	kündigen - to quit a job
+	◦	Satz: Er will kündigen, weil er ein besseres Angebot hat.
+	◦	Translation: He wants to quit because he has a better offer.
+	26	die Verantwortung - the responsibility
+	◦	Satz: In meinem Job trage ich viel Verantwortung.
+	◦	Translation: In my job, I have a lot of responsibility.
+	27	die Aufgabe - the task
+	◦	Satz: Diese Aufgabe ist sehr schwierig.
+	◦	Translation: This task is very difficult.
+	28	das Team - the team
+	◦	Satz: Unser Team arbeitet sehr gut zusammen.
+	◦	Translation: Our team works together very well.
+	29	die Besprechung - the meeting
+	◦	Satz: Die Besprechung dauert eine Stunde.
+	◦	Translation: The meeting will last one hour.
+	30	der Arbeitsplatz - the workplace
+	◦	Satz: Mein Arbeitsplatz ist in einem modernen Büro.
+	◦	Translation: My workplace is in a modern office.
+4. Gesundheit & Körper (Health & Body)
+	31	die Gesundheit - the health
+	◦	Satz: Gesundheit ist das Wichtigste im Leben.
+	◦	Translation: Health is the most important thing in life.
+	32	krank - sick, ill
+	◦	Satz: Ich bin krank und bleibe heute zu Hause.
+	◦	Translation: I am sick and am staying home today.
+	33	sich erkälten - to catch a cold
+	◦	Satz: Du kannst dich leicht erkälten, wenn es kalt ist.
+	◦	Translation: You can easily catch a cold when it's cold.
+	34	Fieber haben - to have a fever
+	◦	Satz: Das Kind hat Fieber und muss im Bett bleiben.
+	◦	Translation: The child has a fever and needs to stay in bed.
+	35	Husten - the cough
+	◦	Satz: Sein Husten klingt schlimm.
+	◦	Translation: His cough sounds bad.
+	36	Schmerzen haben - to have pain
+	◦	Satz: Ich habe Schmerzen im Rücken.
+	◦	Translation: I have pain in my back.
+	37	das Rezept - the prescription
+	◦	Satz: Der Arzt hat mir ein Rezept für Medikamente gegeben.
+	◦	Translation: The doctor gave me a prescription for medicine.
+	38	die Apotheke - the pharmacy
+	◦	Satz: Ich gehe zur Apotheke, um die Medizin abzuholen.
+	◦	Translation: I'm going to the pharmacy to pick up the medicine.
+	39	der Arzt / die Ärztin - the doctor
+	◦	Satz: Ich habe einen Termin bei meiner Ärztin.
+	◦	Translation: I have an appointment with my doctor.
+	40	untersuchen - to examine
+	◦	Satz: Der Doktor wird den Patienten gründlich untersuchen.
+	◦	Translation: The doctor will examine the patient thoroughly.
+5. Reisen & Verkehr (Travel & Transport)
+	41	die Reise - the trip
+	◦	Satz: Unsere Reise nach Italien war wunderbar.
+	◦	Translation: Our trip to Italy was wonderful.
+	42	die Buchung - the booking
+	◦	Satz: Die Buchung des Hotels war einfach.
+	◦	Translation: The booking of the hotel was easy.
+	43	der Flug - the flight
+	◦	Satz: Unser Flug nach Berlin startet um 10 Uhr.
+	◦	Translation: Our flight to Berlin departs at 10 a.m.
+	44	der Flughafen - the airport
+	◦	Satz: Wir müssen um 6 Uhr am Flughafen sein.
+	◦	Translation: We have to be at the airport at 6 a.m.
+	45	ankommen - to arrive
+	◦	Satz: Der Zug kommt um 14:30 Uhr am Hauptbahnhof an.
+	◦	Translation: The train arrives at the main station at 2:30 p.m.
+	46	die Unterkunft - the accommodation
+	◦	Satz: Unsere Unterkunft war sehr gemütlich.
+	◦	Translation: Our accommodation was very cozy.
+	47	die Sehenswürdigkeit - the sight, attraction
+	◦	Satz: Das Brandenburger Tor ist eine berühmte Sehenswürdigkeit.
+	◦	Translation: The Brandenburg Gate is a famous sight.
+	48	sich verirren - to get lost
+	◦	Satz: Ich habe mich in der Altstadt verirrt.
+	◦	Translation: I got lost in the old town.
+	49	die Verspätung - the delay
+	◦	Satz: Der Bus hat eine Verspätung von 20 Minuten.
+	◦	Translation: The bus has a delay of 20 minutes.
+	50	um/steigen - to change (trains/buses)
+	◦	Satz: In Köln müssen Sie umsteigen.
+	◦	Translation: You have to change trains in Cologne.
+6. Wohnen & Einrichtung (Living & Furnishings)
+	51	die Wohnung - the apartment
+	◦	Satz: Seine Wohnung ist in der Nähe des Zentrums.
+	◦	Translation: His apartment is near the center.
+	52	das Einfamilienhaus - the single-family house
+	◦	Satz: Sie träumen von einem eigenen Einfamilienhaus.
+	◦	Translation: They dream of their own single-family house.
+	53	die Miete - the rent
+	◦	Satz: Die Miete für diese Wohnung ist sehr hoch.
+	◦	Translation: The rent for this apartment is very high.
+	54	der Vermieter / die Vermieterin - the landlord
+	◦	Satz: Ich habe ein Problem mit der Heizung und rufe den Vermieter an.
+	◦	Translation: I have a problem with the heating and I'm calling the landlord.
+	55	der Mietvertrag - the lease
+	◦	Satz: Bevor du einziehst, musst du den Mietvertrag unterschreiben.
+	◦	Translation: Before you move in, you have to sign the lease.
+	56	der Herd - the stove
+	◦	Satz: Der Herd in der neuen Küche ist induktion.
+	◦	Translation: The stove in the new kitchen is induction.
+	57	der Kühlschrank - the refrigerator
+	◦	Satz: Der Kühlschrank ist fast leer.
+	◦	Translation: The refrigerator is almost empty.
+	58	das Schlafzimmer - the bedroom
+	◦	Satz: Ihr Schlafzimmer ist sehr groß und hell.
+	◦	Translation: Her bedroom is very large and bright.
+	59	das Wohnzimmer - the living room
+	◦	Satz: Wir entspannen uns abends im Wohnzimmer.
+	◦	Translation: We relax in the living room in the evenings.
+	60	die Dusche - the shower
+	◦	Satz: Ich ziehe eine Dusche einem Bad vor.
+	◦	Translation: I prefer a shower to a bath.
+7. Gefühle & Meinungen (Feelings & Opinions)
+	61	glücklich - happy
+	◦	Satz: Sie ist sehr glücklich über die gute Nachricht.
+	◦	Translation: She is very happy about the good news.
+	62	traurig - sad
+	◦	Satz: Der Film war so traurig, dass ich geweint habe.
+	◦	Translation: The film was so sad that I cried.
+	63	wütend - angry
+	◦	Satz: Sein Chef war wütend, weil er den Bericht vergessen hatte.
+	◦	Translation: His boss was angry because he had forgotten the report.
+	64	enttäuscht - disappointed
+	◦	Satz: Ich bin enttäuscht von dem Service in diesem Restaurant.
+	◦	Translation: I am disappointed with the service in this restaurant.
+	65	besorgt - worried
+	◦	Satz: Seine Eltern sind besorgt, weil er so spät noch nicht zu Hause ist.
+	◦	Translation: His parents are worried because he isn't home yet and it's so late.
+	66	nervös - nervous
+	◦	Satz: Vor der Prüfung bin ich immer sehr nervös.
+	◦	Translation: Before an exam, I am always very nervous.
+	67	aufgeregt - excited
+	◦	Satz: Die Kinder sind aufgeregt, weil morgen Weihnachten ist.
+	◦	Translation: The children are excited because tomorrow is Christmas.
+	68	stolz - proud
+	◦	Satz: Sie ist stolz auf die Leistung ihrer Tochter.
+	◦	Translation: She is proud of her daughter's achievement.
+	69	die Meinung - the opinion
+	◦	Satz: Das ist nur meine persönliche Meinung.
+	◦	Translation: That's just my personal opinion.
+	70	zustimmen - to agree
+	◦	Satz: In diesem Punkt stimme ich dir voll und ganz zu.
+	◦	Translation: On this point, I completely agree with you.
+8. Essen & Trinken (Food & Drink)
+	71	die Mahlzeit - the meal
+	◦	Satz: Das Abendessen ist meine liebste Mahlzeit am Tag.
+	◦	Translation: Dinner is my favorite meal of the day.
+	72	das Gericht - the dish (food)
+	◦	Satz: Dieses Gericht ist eine Spezialität aus Österreich.
+	◦	Translation: This dish is a specialty from Austria.
+	73	die Zutat - the ingredient
+	◦	Satz: Für diesen Kuchen brauchst du nur drei Zutaten.
+	◦	Translation: For this cake, you only need three ingredients.
+	74	lecker - delicious
+	◦	Satz: Der Kuchen schmeckt lecker!
+	◦	Translation: The cake tastes delicious!
+	75	sauer - sour
+	◦	Satz: Diese Zitrone ist zu sauer zum Essen.
+	◦	Translation: This lemon is too sour to eat.
+	76	würzig - spicy
+	◦	Satz: Das indische Curry war sehr würzig.
+	◦	Translation: The Indian curry was very spicy.
+	77	zubereiten - to prepare (food)
+	◦	Satz: Er bereitet das Abendessen zu.
+	◦	Translation: He is preparing dinner.
+	78	kochen - to cook
+	◦	Satz: Lernen Sie gerne, neue Rezepte zu kochen?
+	◦	Translation: Do you like learning to cook new recipes?
+	79	backen - to bake
+	◦	Satz: Am Wochenende backe ich immer Brot.
+	◦	Translation: On weekends, I always bake bread.
+	80	braten - to fry, to roast
+	◦	*Satz:Brat die Zwiebeln bitte in der Pfanne.
+	◦	Translation: Please fry the onions in the pan.
+9. Freizeit & Hobbys (Free Time & Hobbies)
+	81	die Freizeit - the free time
+	◦	Satz: In meiner Freizeit lese ich gerne.
+	◦	Translation: In my free time, I like to read.
+	82	das Hobby - the hobby
+	◦	Satz: Fotografieren ist ein teures Hobby.
+	◦	Translation: Photography is an expensive hobby.
+	83	sammeln - to collect
+	◦	Satz: Mein Bruder sammelt alte Münzen.
+	◦	Translation: My brother collects old coins.
+	84	das Instrument - the instrument
+	◦	Satz: Sie spielt ein Instrument:
+	◦	Translation: She plays an instrument.
+	85	malen - to paint
+	◦	Satz: Der Künstler malt ein Bild.
+	◦	Translation: The artist is painting a picture.
+	86	zeichnen - to draw
+	◦	Satz: Das Kind zeichnet ein Haus.
+	◦	Translation: The child is drawing a house.
+	87	der Verein - the club, association
+	◦	Satz: Er ist Mitglied in einem Sportverein.
+	◦	Translation: He is a member of a sports club.
+	88	wandern - to hike
+	◦	Satz: Am Wochenende wollen wir im Schwarzwald wandern.
+	◦	Translation: On the weekend we want to hike in the Black Forest.
+	89	die Erholung - the recreation
+	◦	Satz: Der Urlaub dient der Erholung.
+	◦	Translation: The vacation is for recreation.
+	90	campen - to camp
+	◦	Satz: Im Sommer campen wir immer an einem See.
+	◦	Translation: In the summer, we always camp by a lake.
+10. Abstracte Konzepte & Adjektive (Abstract Concepts & Adjectives)
+	91	der Vorteil - the advantage
+	◦	Satz: Der Vorteil dieser Methode ist die Geschwindigkeit.
+	◦	Translation: The advantage of this method is the speed.
+	92	der Nachteil - the disadvantage
+	◦	Satz: Der Nachteil ist der hohe Preis.
+	◦	Translation: The disadvantage is the high price.
+	93	die Möglichkeit - the possibility
+	◦	Satz: Es besteht die Möglichkeit, dass es morgen regnet.
+	◦	Translation: There is a possibility that it will rain tomorrow.
+	94	der Grund - the reason
+	◦	Satz: Was ist der Grund für deine Verspätung?
+	◦	Translation: What is the reason for your delay?
+	95	das Ergebnis - the result
+	◦	Satz: Das Ergebnis der Wahl war eine Überraschung.
+	◦	Translation: The result of the election was a surprise.
+	96	wichtig - important
+	◦	Satz: Es ist wichtig, pünktlich zu sein.
+	◦	Translation: It is important to be on time.
+	97	notwendig - necessary
+	◦	Satz: Eine Reparatur ist notwendig.
+	◦	Translation: A repair is necessary.
+	98	einfach - simple, easy
+	◦	Satz: Die Bedienung des Geräts ist ganz einfach.
+	◦	Translation: The operation of the device is very simple.
+	99	schwierig - difficult
+	◦	Satz: Die letzte Frage war sehr schwierig.
+	◦	Translation: The last question was very difficult.
+	100	erfolgreich - successful
+* Satz: Sie ist eine erfolgreiche Geschäftsfrau. * Translation: She is a successful businesswoman.
