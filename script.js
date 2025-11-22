@@ -279,39 +279,87 @@ function bindControls(){
     const restraint = 80; // max horizontal movement
     const allowedTime = 500; // ms
 
-    function onPointerStart(ev){
+    let activePointerId = null;
+    let dragging = false;
+
+    function onStart(e){
       // ignore swipes that start on interactive controls
-      if(ev.target.closest && ev.target.closest('.btn')) return;
-      startY = ev.clientY || (ev.touches && ev.touches[0] && ev.touches[0].clientY) || null;
-      startX = ev.clientX || (ev.touches && ev.touches[0] && ev.touches[0].clientX) || null;
+      const t = (e.target && e.target.closest) ? e.target : null;
+      if(t && t.closest && t.closest('.btn')) return;
       startTime = Date.now();
+      dragging = false;
+      if(e.type === 'pointerdown'){
+        activePointerId = e.pointerId;
+        startY = e.clientY; startX = e.clientX;
+      } else if(e.type === 'touchstart'){
+        const t0 = e.touches && e.touches[0];
+        if(!t0) return;
+        startY = t0.clientY; startX = t0.clientX;
+      } else if(e.type === 'mousedown'){
+        startY = e.clientY; startX = e.clientX;
+      }
     }
 
-    function onPointerEnd(ev){
+    function onMove(e){
+      let clientY = null, clientX = null;
+      if(e.type === 'pointermove'){
+        if(activePointerId != null && e.pointerId !== activePointerId) return;
+        clientY = e.clientY; clientX = e.clientX;
+      } else if(e.type === 'touchmove'){
+        const t0 = e.touches && e.touches[0]; if(!t0) return; clientY = t0.clientY; clientX = t0.clientX;
+      } else if(e.type === 'mousemove'){
+        clientY = e.clientY; clientX = e.clientX;
+      }
       if(startY === null) return;
-      const endY = ev.clientY || (ev.changedTouches && ev.changedTouches[0] && ev.changedTouches[0].clientY) || null;
-      const endX = ev.clientX || (ev.changedTouches && ev.changedTouches[0] && ev.changedTouches[0].clientX) || null;
+      const dy = startY - clientY;
+      const dx = Math.abs((startX||0) - (clientX||0));
+      // if vertical movement dominates, prevent native scroll and mark dragging
+      if(Math.abs(dy) > 10 && Math.abs(dy) > dx){
+        dragging = true;
+        // preventDefault to stop native scrolling when dragging vertically
+        try{ e.preventDefault(); }catch(err){}
+      }
+    }
+
+    function onEnd(e){
+      let endY = null, endX = null;
+      if(e.type === 'pointerup' || e.type === 'pointercancel'){
+        if(activePointerId != null && e.pointerId !== activePointerId) return;
+        endY = e.clientY; endX = e.clientX; activePointerId = null;
+      } else if(e.type === 'touchend' || e.type === 'touchcancel'){
+        const t0 = e.changedTouches && e.changedTouches[0]; if(!t0) return; endY = t0.clientY; endX = t0.clientX;
+      } else if(e.type === 'mouseup'){
+        endY = e.clientY; endX = e.clientX;
+      }
+      if(startY === null) return;
       const distY = startY - (endY||0);
       const distX = Math.abs((startX||0) - (endX||0));
       const elapsed = Date.now() - startTime;
       startY = null; startX = null; startTime = 0;
+      // if not dragging, ignore
+      if(!dragging) return;
       if(elapsed > allowedTime) return;
-      if(distX > restraint) return; // too much horizontal movement
-      if(Math.abs(distY) >= threshold){
-        if(distY > 0) next(); else prev();
-      }
+      if(distX > restraint) return;
+      if(Math.abs(distY) >= threshold){ if(distY > 0) next(); else prev(); }
+      dragging = false;
     }
 
-    // prefer pointer events when available
+    // attach listeners (non-passive where we may call preventDefault)
     if(window.PointerEvent){
-      el.cardsRoot.addEventListener('pointerdown', onPointerStart, {passive:true});
-      el.cardsRoot.addEventListener('pointerup', onPointerEnd, {passive:true});
+      el.cardsRoot.addEventListener('pointerdown', onStart);
+      // track moves and end on window so we capture drags that leave the element
+      window.addEventListener('pointermove', onMove, {passive:false});
+      window.addEventListener('pointerup', onEnd);
+      window.addEventListener('pointercancel', onEnd);
     } else {
-      el.cardsRoot.addEventListener('touchstart', onPointerStart, {passive:true});
-      el.cardsRoot.addEventListener('touchend', onPointerEnd, {passive:true});
-      // mouse fallback for testing on desktop
-      el.cardsRoot.addEventListener('mousedown', onPointerStart);
-      el.cardsRoot.addEventListener('mouseup', onPointerEnd);
+      el.cardsRoot.addEventListener('touchstart', onStart, {passive:false});
+      el.cardsRoot.addEventListener('touchmove', onMove, {passive:false});
+      el.cardsRoot.addEventListener('touchend', onEnd);
+      el.cardsRoot.addEventListener('touchcancel', onEnd);
+      // mouse fallback
+      el.cardsRoot.addEventListener('mousedown', onStart);
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('mouseup', onEnd);
     }
   })();
 }

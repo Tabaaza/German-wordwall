@@ -14,8 +14,8 @@
 }
 
 *{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#eaf2ff;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));}
-body{overflow:auto}
+html,body{height:100%;margin:0; height: 100%;width: 100%;height: 100vh;width: 100vw;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#eaf2ff;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));overflow: hidden;}
+body{overflow:hidden}
 
 /* Layout */
 .app{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
@@ -24,10 +24,10 @@ body{overflow:auto}
 .header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px}
 .header .chips{display:flex;gap:8px;align-items:center}
 .chip{background:var(--glass);padding:8px 12px;border-radius:999px;font-size:13px;color:var(--muted)}
-.hint{font-size:13px;color:#f7f7f7;background:rgba(95, 41, 182, 0.47);padding:8px 12px;border-radius:10px;cursor:pointer;border:1px solid rgba(255,255,255,0.06)}
+.hint{font-size:9px;color:#f7f7f7;background:rgba(95, 41, 182, 0.47);padding:8px 12px;border-radius:10px;cursor:pointer;border:1px solid rgba(255,255,255,0.06)}
 .hint:focus{outline:3px solid rgba(95,41,182,0.18);box-shadow:0 4px 18px rgba(95,41,182,0.12)}
 
-#cardsRoot{position:relative;flex:1;display:block}
+#cardsRoot{position:relative;flex:1;display:block;touch-action:none;-ms-touch-action:none;-webkit-user-select:none;user-select:none}
 .card{position:absolute;inset:0;padding:28px;display:flex;flex-direction:column;text-align:center;transition:transform .36s ease,opacity .25s ease}
 
 .card__theme{display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(255,255,255,0.02);padding-top:44px;padding-bottom:12px}
@@ -58,7 +58,7 @@ body{overflow:auto}
 
 /* small screens */
 @media (max-width:420px){
-  .viewer{height:100vh;border-radius:12px}
+  .viewer{height:95vh;border-radius:12px}
   .card{padding:14px}
   .card__theme{padding-top:22px}
   .card__theme .title{padding:6px 10px;font-size:12px}
@@ -66,6 +66,14 @@ body{overflow:auto}
   .word--english{font-size:14px;margin-top:10px}
   .choice-row{flex-direction:column;align-items:stretch}
   .choice-btn{min-width:100%}
+
+  /* Mobile footer: place progress above controls and reduce button size */
+  .footer{flex-direction:column;align-items:stretch;gap:8px;padding:10px}
+  .progress{order:0;height:6px;border-radius:8px}
+  .progress__fill{height:100%}
+  .controls{order:1;display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+  .controls .btn{padding:6px 8px;font-size:13px;min-width:64px;border-radius:8px}
+  .chip{padding:6px 8px;font-size:12px}
 }
 
 /* medium phones */
