@@ -97,6 +97,9 @@
     line-height:1.4;
   }
 
+  .bookmark-btn{ margin-left:10px; padding:6px 8px; font-size:16px }
+  .bookmark-active{ color: #ffd166; }
+
   .topbar{position:absolute;left:18px;top:18px; display:flex;gap:10px;}
   .chip{background:var(--glass);padding:8px 12px;border-radius:999px;font-size:13px;color:var(--muted);}
 
@@ -130,6 +133,7 @@
       <button class="btn" id="prevBtn">Prev</button>
       <button class="btn" id="nextBtn">Next</button>
       <button class="btn" id="shuffleBtn">Shuffle</button>
+      <button class="btn" id="toggleBookmarksBtn">Bookmarks</button>
     </div>
 
   </div>
@@ -142,6 +146,26 @@ let themes = [];
 let cards = [];
 let index = 0;
 const STORAGE_KEY = `german-wordwall:${FILE_URL}`;
+const BOOKMARKS_KEY = `german-wordwall:bookmarks:${FILE_URL}`;
+
+let bookmarks = {};
+let showBookmarks = false;
+
+function loadBookmarks(){
+  try{
+    const raw = localStorage.getItem(BOOKMARKS_KEY);
+    bookmarks = raw ? JSON.parse(raw) : {};
+  }catch(e){ bookmarks = {}; }
+}
+
+function saveBookmarks(){
+  try{ localStorage.setItem(BOOKMARKS_KEY, JSON.stringify(bookmarks)); }catch(e){}
+}
+
+function cardId(c){
+  // stable id per card: theme|german|english
+  return `${(c.theme||'')}|${c.g}|${c.e}`;
+}
 
 function saveIndex() {
   try { localStorage.setItem(STORAGE_KEY, String(index)); } catch (e) {}
@@ -256,21 +280,27 @@ function renderCards(){
   const root = document.getElementById("cardsRoot");
   root.innerHTML = "";
 
-  cards.forEach((c,i)=>{
+  const list = showBookmarks ? cards.filter(c=>bookmarks[cardId(c)]) : cards;
+
+  list.forEach((c,i)=>{
     const card = document.createElement("div");
     card.className = "card";
     card.dataset.index = i;
+    // store original index for reference (not strictly required)
+    card.dataset.origId = cardId(c);
 
     card.style.transform = `translateY(${(i-index)*110}%)`;
+
+    const starred = !!bookmarks[cardId(c)];
 
     card.innerHTML = `
       <div class="theme">
         <div class="title">${c.theme}</div>
+        <button class="btn bookmark-btn ${starred? 'bookmark-active':''}" data-id="${cardId(c)}" aria-pressed="${starred}">${starred? '★':'☆'}</button>
       </div>
 
       <div class="content">
         <h1 class="german">${c.g}</h1>
-      
 
         <div class="example-box">
           <div class="english">${c.e}</div>
@@ -286,6 +316,18 @@ function renderCards(){
       box.style.display = box.style.display==="block" ? "none" : "block";
     });
 
+    /* Bookmark toggle */
+    const btn = card.querySelector('.bookmark-btn');
+    if(btn){
+      btn.addEventListener('click', (ev)=>{
+        ev.stopPropagation();
+        const id = btn.dataset.id;
+        if(bookmarks[id]){ delete bookmarks[id]; btn.classList.remove('bookmark-active'); btn.textContent='☆'; btn.setAttribute('aria-pressed','false'); }
+        else { bookmarks[id]=true; btn.classList.add('bookmark-active'); btn.textContent='★'; btn.setAttribute('aria-pressed','true'); }
+        saveBookmarks();
+      });
+    }
+
     root.appendChild(card);
   });
 
@@ -293,9 +335,10 @@ function renderCards(){
 }
 
 function updateUI(){
-  const total = cards.length;
-  document.getElementById("countChip").textContent = `${index+1}/${total}`;
-  document.getElementById("progressFill").style.width = ((index+1)/total*100)+"%";
+  const list = showBookmarks ? cards.filter(c=>bookmarks[cardId(c)]) : cards;
+  const total = list.length;
+  document.getElementById("countChip").textContent = `${Math.min(index+1,total)}/${total}`;
+  document.getElementById("progressFill").style.width = (total?((index+1)/total*100):0)+"%";
 
   document.querySelectorAll(".card").forEach(card=>{
     const i = +card.dataset.index;
@@ -325,6 +368,16 @@ document.getElementById("prevBtn").onclick = prev;
 document.getElementById("shuffleBtn").onclick = ()=>{
   cards.sort(()=>Math.random()-0.5);
   // after shuffling, reset to start and persist
+  index = 0;
+  saveIndex();
+  renderCards();
+};
+
+document.getElementById('toggleBookmarksBtn').onclick = ()=>{
+  showBookmarks = !showBookmarks;
+  const btn = document.getElementById('toggleBookmarksBtn');
+  btn.textContent = showBookmarks ? 'All' : 'Bookmarks';
+  // reset index when toggling view
   index = 0;
   saveIndex();
   renderCards();
@@ -365,7 +418,8 @@ async function loadFile(){
     const plain = rtfToText(raw);
     themes = parseNewFormat(plain);
     cards = flatten(themes);
-    // restore last index for this file if available
+    // load bookmarks and restore last index for this file if available
+    loadBookmarks();
     index = restoreIndex(cards.length || 1);
     console.log('DEBUG: parsed themes', themes.length, 'cards', cards.length);
     console.log('DEBUG: sample cards', cards.slice(0,6));
