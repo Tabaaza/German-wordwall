@@ -15,7 +15,7 @@
 
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;padding:0!important;width:100%;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#eaf2ff;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));overflow: hidden;}
-body{padding: env(safe-area-inset-top) env(safe-area-inset-right)env(safe-area-inset-bottom) env(safe-area-inset-left);overflow:hidden}
+body{padding-bottom: env(safe-area-inset-bottom);padding: env(safe-area-inset-top) env(safe-area-inset-right)env(safe-area-inset-bottom) env(safe-area-inset-left);overflow:hidden}
 
 /* Layout */
 .app{height:calc(var(--vh, 1vh) * 100);;padding:0!important;display:flex;align-items:center;justify-content:center;padding:16px}
