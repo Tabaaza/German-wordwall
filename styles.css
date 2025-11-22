@@ -1,0 +1,80 @@
+/* Design tokens */
+:root{
+  --bg-1:#071028;
+  --bg-2:#081226;
+  --card-bg:rgba(255,255,255,0.02);
+  --accent:#8bd3c7;
+  --muted:#a6b0c3;
+  --glass:rgba(255,255,255,0.03);
+  --radius:18px;
+  --surface-contrast: rgba(255,255,255,0.02);
+  --success:#2ecc71;
+  --danger:#e74c3c;
+  --star:#ffd166;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#eaf2ff;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));}
+body{overflow:auto}
+
+/* Layout */
+.app{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+.viewer{width:min(720px,96vw);height:min(820px,92vh);border-radius:var(--radius);overflow:hidden;background:linear-gradient(180deg,var(--card-bg),rgba(255,255,255,0.01));box-shadow:0 18px 60px rgba(3,8,20,0.6);position:relative;display:flex;flex-direction:column}
+
+.header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px}
+.header .chips{display:flex;gap:8px;align-items:center}
+.chip{background:var(--glass);padding:8px 12px;border-radius:999px;font-size:13px;color:var(--muted)}
+.hint{font-size:13px;color:#f7f7f7;background:rgba(95, 41, 182, 0.47);padding:8px 12px;border-radius:10px;cursor:pointer;border:1px solid rgba(255,255,255,0.06)}
+.hint:focus{outline:3px solid rgba(95,41,182,0.18);box-shadow:0 4px 18px rgba(95,41,182,0.12)}
+
+#cardsRoot{position:relative;flex:1;display:block}
+.card{position:absolute;inset:0;padding:28px;display:flex;flex-direction:column;text-align:center;transition:transform .36s ease,opacity .25s ease}
+
+.card__theme{display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(255,255,255,0.02);padding-top:44px;padding-bottom:12px}
+.card__theme .title{display:inline-block;padding:8px 14px;border-radius:999px;background:var(--glass);color:var(--muted);font-size:14px}
+.card__theme .card__bookmark{margin-left:12px;border:2px solid rgba(255,255,255,0.04);background:transparent;font-size:18px;color:var(--star);cursor:pointer;border-radius:8px;padding:6px 8px;line-height:1}
+.card__theme .card__bookmark[aria-pressed="true"]{color:var(--star);background:rgba(255,209,102,0.12)}
+
+.card__content{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px 8%}
+.word--german{font-size:clamp(28px,6.8vw,56px);font-weight:700;margin:0}
+.word--english{font-size:clamp(14px,3vw,20px);margin-top:12px;color:var(--accent)}
+.examples{margin-top:18px;font-size:15px;color:var(--muted);line-height:1.4;display:none}
+.examples[aria-hidden="false"]{display:block}
+
+/* choices */
+.choice-row{display:flex;gap:10px;margin-top:18px;justify-content:center}
+.choice-btn{padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--muted);cursor:pointer;min-width:140px}
+.choice-btn[aria-pressed="true"]{pointer-events:none;opacity:.9}
+.choice-btn.correct{background:var(--success);color:#04240b;border-color:var(--success)}
+.choice-btn.wrong{background:var(--danger);color:#fff}
+.choice-btn.correct-border{box-shadow:0 0 0 3px rgba(46,204,113,0.12);border-color:var(--success)}
+
+/* footer */
+.footer{display:flex;align-items:center;gap:12px;padding:12px 14px}
+.progress{flex:1;height:8px;background:rgba(255,255,255,0.03);border-radius:999px;overflow:hidden}
+.progress__fill{height:100%;display:block;background:linear-gradient(90deg,var(--accent),#8ac8f0);width:0}
+.controls{display:flex;gap:8px}
+.btn{border:1px solid rgba(255,255,255,0.06);background:transparent;padding:8px 10px;color:var(--muted);border-radius:10px;cursor:pointer}
+
+/* small screens */
+@media (max-width:420px){
+  .viewer{height:100vh;border-radius:12px}
+  .card{padding:14px}
+  .card__theme{padding-top:22px}
+  .card__theme .title{padding:6px 10px;font-size:12px}
+  .word--german{font-size:clamp(20px,9.5vw,36px)}
+  .word--english{font-size:14px;margin-top:10px}
+  .choice-row{flex-direction:column;align-items:stretch}
+  .choice-btn{min-width:100%}
+}
+
+/* medium phones */
+@media (min-width:421px) and (max-width:720px){
+  .choice-row{flex-wrap:wrap}
+  .choice-btn{min-width:45%}
+}
+
+/* large screens */
+@media (min-width:1200px){
+  .viewer{width:720px;height:88vh}
+}
