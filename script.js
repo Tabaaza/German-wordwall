@@ -21,6 +21,15 @@ let el = {};
 
 function q(id){ return document.getElementById(id); }
 
+/* ----------------- setVh ----------------- */
+function setVh() {
+      document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px');
+    }
+    setVh();
+    // update on resize/orientationchange
+    window.addEventListener('resize', setVh);
+    window.addEventListener('orientationchange', setVh);
+
 /* ----------------- Utilities ----------------- */
 function safeParseJSON(s, fallback) {
   try{
