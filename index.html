@@ -141,6 +141,21 @@ const FILE_URL = "/mnt/data/file-3.txt";  // uploaded file
 let themes = [];
 let cards = [];
 let index = 0;
+const STORAGE_KEY = `german-wordwall:${FILE_URL}`;
+
+function saveIndex() {
+  try { localStorage.setItem(STORAGE_KEY, String(index)); } catch (e) {}
+}
+
+function restoreIndex(total) {
+  try {
+    const v = localStorage.getItem(STORAGE_KEY);
+    if (!v) return 0;
+    const n = parseInt(v, 10);
+    if (Number.isInteger(n) && n >= 0 && n < total) return n;
+  } catch (e) {}
+  return 0;
+}
 
 /* -----------------------------
    NEW PARSER FOR UPDATED FORMAT
@@ -156,40 +171,44 @@ function rtfToText(raw){
 }
 
 function parseNewFormat(text) {
-  const lines = text
-    .split("\n")
-    .map(l => l.trim())
-    .filter(l => l.length > 0);
+  // Normalize newlines and split into non-empty lines
+  const rawLines = text.replace(/\r/g, "\n").split("\n");
+  const lines = rawLines.map(l => l.trim()).filter(l => l.length > 0);
 
   const themes = [];
   let currentTheme = null;
   let lastItem = null;
 
-  const themeRegex = /^\*\s*\d+\.\s*(.+)$/;         // * 6. Wohnen & Einrichtung ...
-  const vocabRegex = /^\*\s*(.+?)\s*-\s*(.+)$/;     // * die Wohnung - the apartment
-  const satzRegex = /^\*\s*Satz:\s*(.+)$/i;         // * Satz: ...
-  const translRegex = /^\*\s*Translation:\s*(.+)$/i;// * Translation: ...
-
   for (let line of lines) {
+    // Remove a leading '*' and any whitespace that often prefixes lines
+    let l = line.replace(/^\*\s?/, "").trim();
 
-    /* ---------- THEME HEADER ---------- */
-    const tm = line.match(themeRegex);
-    if (tm) {
-      currentTheme = {
-        title: tm[1].trim(),
-        items: []
-      };
-      themes.push(currentTheme);
-      lastItem = null;
+    // SATZ line (German example). Accept variations like "Satz:..." or "Satz: ..." or "Satz:Text"
+    const satzMatch = l.match(/^Satz\s*[:：]?\s*(.+)$/i);
+    if (satzMatch && lastItem) {
+      lastItem.satz = satzMatch[1].trim();
       continue;
     }
 
-    /* ---------- VOCAB ITEM ---------- */
-    const vm = line.match(vocabRegex);
-    if (vm && currentTheme) {
+    // TRANSLATION line for example sentence
+    const translMatch = l.match(/^Translation\s*[:：]?\s*(.+)$/i);
+    if (translMatch && lastItem) {
+      lastItem.satz_en = translMatch[1].trim();
+      continue;
+    }
+
+    // VOCAB item: support optional leading index like "91. erfolgreich - successful"
+    const vocabMatch = l.match(/^(?:\d+\.\s*)?(.+?)\s*-\s*(.+)$/);
+    if (vocabMatch) {
+      // Ensure we have a theme to attach to
+      if (!currentTheme) {
+        currentTheme = { title: "Misc", items: [] };
+        themes.push(currentTheme);
+      }
+
       lastItem = {
-        g: vm[1].trim(),
-        e: vm[2].trim(),
+        g: vocabMatch[1].trim(),
+        e: vocabMatch[2].trim(),
         satz: "",
         satz_en: ""
       };
@@ -197,19 +216,18 @@ function parseNewFormat(text) {
       continue;
     }
 
-    /* ---------- SATZ (German example) ---------- */
-    const sm = line.match(satzRegex);
-    if (sm && lastItem) {
-      lastItem.satz = sm[1].trim();
+    // THEME HEADER: lines like "1. Menschen & Beziehungen (People & Relationships)"
+    const themeMatch = l.match(/^(\d+)\.\s*(.+)$/);
+    if (themeMatch) {
+      currentTheme = { title: themeMatch[2].trim(), items: [] };
+      themes.push(currentTheme);
+      lastItem = null;
       continue;
     }
 
-    /* ---------- TRANSLATION (English example) ---------- */
-    const tm2 = line.match(translRegex);
-    if (tm2 && lastItem) {
-      lastItem.satz_en = tm2[1].trim();
-      continue;
-    }
+    // If we reach here, the line didn't match known patterns. Try a relaxed guess:
+    // some files may contain lines like "Satz:Räum bitte..." (no space after the *),
+    // but removing the leading '*' above already handles many cases. Otherwise ignore.
   }
 
   return themes;
@@ -252,9 +270,10 @@ function renderCards(){
 
       <div class="content">
         <h1 class="german">${c.g}</h1>
-        <div class="english">${c.e}</div>
+      
 
         <div class="example-box">
+          <div class="english">${c.e}</div>
           <strong>Satz:</strong> ${c.satz}<br><br>
           <strong>EN:</strong> ${c.satz_en}
         </div>
@@ -289,15 +308,25 @@ function updateUI(){
 /* -----------------------------
    NAVIGATION
 ----------------------------- */
-function next(){ index = (index+1)%cards.length; updateUI(); }
-function prev(){ index = (index-1+cards.length)%cards.length; updateUI(); }
+function setIndex(i){
+  if (!cards.length) { index = 0; return; }
+  // wrap and clamp
+  index = ((i % cards.length) + cards.length) % cards.length;
+  updateUI();
+  saveIndex();
+}
+
+function next(){ setIndex(index+1); }
+function prev(){ setIndex(index-1); }
 
 document.getElementById("nextBtn").onclick = next;
 document.getElementById("prevBtn").onclick = prev;
 
 document.getElementById("shuffleBtn").onclick = ()=>{
   cards.sort(()=>Math.random()-0.5);
+  // after shuffling, reset to start and persist
   index = 0;
+  saveIndex();
   renderCards();
 };
 
@@ -331,9 +360,15 @@ async function loadFile(){
   try{
     const res = await fetch(FILE_URL);
     const raw = await res.text();
+    console.log('DEBUG: fetched raw length', raw.length);
+    console.log('DEBUG: raw preview:\n', raw.slice(0,800));
     const plain = rtfToText(raw);
     themes = parseNewFormat(plain);
     cards = flatten(themes);
+    // restore last index for this file if available
+    index = restoreIndex(cards.length || 1);
+    console.log('DEBUG: parsed themes', themes.length, 'cards', cards.length);
+    console.log('DEBUG: sample cards', cards.slice(0,6));
   }catch(e){
     alert("Error loading file.");
     cards = [];
@@ -344,6 +379,8 @@ async function loadFile(){
   }
 
   renderCards();
+  // ensure UI and stored index are synced
+  saveIndex();
 }
 
 loadFile();
