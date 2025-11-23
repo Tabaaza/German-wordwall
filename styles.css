@@ -24,19 +24,19 @@ body {-webkit-overflow-scrolling: touch;overscroll-behavior: none;padding: env(s
 
 .viewer {max-height: 100dvh; /* Use dvh instead of custom --vh */width: min(720px, 96vw); height: min(820px, 92dvh); /* Use dvh */border-radius:var(--radius);overflow:hidden;background:linear-gradient(180deg,var(--card-bg),rgba(255,255,255,0.01));box-shadow:0 18px 60px rgba(3,8,20,0.6);position:relative;display:flex;flex-direction:column;-webkit-overflow-scrolling: touch; overscroll-behavior: contain;}
 
-.header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px}
+.header{display:flex;align-items:center;justify-content:space-between;padding:12px 10px;gap:10px}
 .header .chips{display:flex;gap:4px;align-items:center}
 .chip{background:var(--glass);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
-.hint{font-size:9px;color:#f7f7f7;background:rgba(95, 41, 182, 0.47);padding:6px 10px;border-radius:10px;cursor:pointer;border:1px solid rgba(255,255,255,0.06)}
+.hint{font-size:11px;color:#f7f7f7;background:rgba(95, 41, 182, 0.47);padding:6px 10px;border-radius:10px;cursor:pointer;border:1px solid rgba(255,255,255,0.06)}
 .hint:focus{outline:3px solid rgba(95,41,182,0.18);box-shadow:0 4px 18px rgba(95,41,182,0.12)}
 
 /* study button active state */
 .study-btn.active{background:linear-gradient(90deg,var(--accent),#8ac8f0);color:#042240;border-color:transparent}
 
 #cardsRoot{position:relative;flex:1;display:block;touch-action:none;-ms-touch-action:none;-webkit-user-select:none;user-select:none}
-.card{position:absolute;inset:0;padding:28px;display:flex;flex-direction:column;text-align:center;transition:transform .36s ease,opacity .25s ease}
+.card{position:absolute;inset:0;padding:10px;display:flex;flex-direction:column;text-align:center;transition:transform .36s ease,opacity .25s ease}
 
-.card__theme{display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(255,255,255,0.02);padding-top:44px;padding-bottom:12px}
+.card__theme{display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(255,255,255,0.02);padding-bottom:12px}
 .card__theme .title{display:inline-block;padding:8px 14px;border-radius:999px;background:var(--glass);color:var(--muted);font-size:14px}
 .card__theme .card__bookmark{margin-left:12px;border:2px solid rgba(255,255,255,0.04);background:transparent;font-size:18px;color:var(--star);cursor:pointer;border-radius:8px;padding:6px 8px;line-height:1}
 .card__theme .card__bookmark[aria-pressed="true"]{color:var(--star);background:rgba(255,209,102,0.12)}
@@ -49,7 +49,7 @@ body {-webkit-overflow-scrolling: touch;overscroll-behavior: none;padding: env(s
 
 /* choices */
 .choice-row{display:flex;gap:10px;margin-top:18px;justify-content:center}
-.choice-btn{padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--muted);cursor:pointer;min-width:140px}
+.choice-btn{height: 55px;font-size: 15px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--muted);cursor:pointer;min-width:140px}
 .choice-btn[aria-pressed="true"]{pointer-events:none;opacity:.9}
 .choice-btn.correct{background:var(--success);color:#04240b;border-color:var(--success)}
 .choice-btn.wrong{background:var(--danger);color:#fff}
@@ -64,6 +64,7 @@ body {-webkit-overflow-scrolling: touch;overscroll-behavior: none;padding: env(s
 
 /* small screens */
 @media (max-width:420px){
+  .header {flex-direction: column;}
   .viewer{height:100vh;border-radius:12px}
   .card{padding:14px}
   .card__theme{padding-top:22px}
