@@ -104,7 +104,7 @@ function renderCards(){
     card.className='card';
     card.dataset.index = i;
     card.setAttribute('role','group');
-    card.style.transform = `translateY(${(i-state.index)*110}%)`;
+    card.style.transform = `translateY(${(i-state.index)*140}%)`;
 
     const starred = !!state.bookmarks[cardId(c)];
 
@@ -224,7 +224,7 @@ function updateUI(){
     nodes.forEach(node => {
       const i = Number(node.dataset.index);
       const offset = i - state.index;
-      node.style.transform = `translateY(${offset*110}%)`;
+      node.style.transform = `translateY(${offset*140}%)`;
       node.style.opacity = Math.abs(offset) > 2 ? '0' : '1';
     });
   });
