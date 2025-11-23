@@ -24,7 +24,7 @@ body {-webkit-overflow-scrolling: touch;overscroll-behavior: none;padding: env(s
 
 .viewer {max-height: 100dvh; /* Use dvh instead of custom --vh */width: min(720px, 96vw); height: min(820px, 92dvh); /* Use dvh */border-radius:var(--radius);overflow:hidden;background:linear-gradient(180deg,var(--card-bg),rgba(255,255,255,0.01));box-shadow:0 18px 60px rgba(3,8,20,0.6);position:relative;display:flex;flex-direction:column;-webkit-overflow-scrolling: touch; overscroll-behavior: contain;}
 
-.header{display:flex;align-items:center;justify-content:space-between;padding:12px 10px;gap:10px;z-index: 999;}
+.header{display:flex;align-items:center;justify-content:space-between;padding:10px 4px 2px;gap:10px;z-index: 999;background: linear-gradient(180deg, #102356, #0a152b);}
 .header .chips{display:flex;gap:4px;align-items:center}
 .chip{background:var(--glass);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
 .hint{font-size:11px;color:#f7f7f7;background:rgba(95, 41, 182, 0.47);padding:6px 10px;border-radius:10px;cursor:pointer;border:1px solid rgba(255,255,255,0.06)}
@@ -56,7 +56,7 @@ body {-webkit-overflow-scrolling: touch;overscroll-behavior: none;padding: env(s
 .choice-btn.correct-border{box-shadow:0 0 0 3px rgba(46,204,113,0.12);border-color:var(--success)}
 
 /* footer */
-.footer{display:flex;align-items:center;gap:12px;padding:12px 14px;z-index: 999;}
+.footer{display:flex;align-items:center;gap:12px;padding:12px 14px;z-index: 999;    background: linear-gradient(180deg,#0a152b,#102356);}
 .progress{flex:1;height:8px;background:rgba(255,255,255,0.03);border-radius:999px;overflow:hidden}
 .progress__fill{height:100%;display:block;background:linear-gradient(90deg,var(--accent),#8ac8f0);width:0}
 .controls{display:flex;gap:8px}
@@ -66,8 +66,8 @@ body {-webkit-overflow-scrolling: touch;overscroll-behavior: none;padding: env(s
 @media (max-width:420px){
   .header {flex-direction: column;}
   .viewer{height:100vh;border-radius:12px}
-  .card{padding:14px}
-  .card__theme{padding-top:22px}
+  .card{padding: 2px 5px}
+  .card__theme{padding-top:2px}
   .card__theme .title{padding:6px 10px;font-size:12px}
   .word--german{font-size:clamp(20px,9.5vw,36px)}
   .word--english{font-size:14px;margin-top:10px}
