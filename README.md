@@ -2,7 +2,6 @@
 
 A tiny web app for flipping German ↔ English cards. Works offline-ish (static files), swipe up/down like those short-video apps, and bookmarks per-dataset. 😄
 
-> NOTE: this readme has some human grammar mistakkes on porpuse, and a lil emoji for fun ✨
 
 ## Quick run (dev)
 
