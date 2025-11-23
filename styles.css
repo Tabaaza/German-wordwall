@@ -30,6 +30,9 @@ body {-webkit-overflow-scrolling: touch;overscroll-behavior: none;padding: env(s
 .hint{font-size:9px;color:#f7f7f7;background:rgba(95, 41, 182, 0.47);padding:6px 10px;border-radius:10px;cursor:pointer;border:1px solid rgba(255,255,255,0.06)}
 .hint:focus{outline:3px solid rgba(95,41,182,0.18);box-shadow:0 4px 18px rgba(95,41,182,0.12)}
 
+/* study button active state */
+.study-btn.active{background:linear-gradient(90deg,var(--accent),#8ac8f0);color:#042240;border-color:transparent}
+
 #cardsRoot{position:relative;flex:1;display:block;touch-action:none;-ms-touch-action:none;-webkit-user-select:none;user-select:none}
 .card{position:absolute;inset:0;padding:28px;display:flex;flex-direction:column;text-align:center;transition:transform .36s ease,opacity .25s ease}
 

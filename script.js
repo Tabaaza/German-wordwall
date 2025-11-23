@@ -3,9 +3,16 @@
    - DOM updates done with DocumentFragment and requestAnimationFrame where helpful
 */
 
-const FILE_URL = '/mnt/data/file-3.txt';
-const STORAGE_KEY = `german-wordwall:${FILE_URL}`;
-const BOOKMARKS_KEY = `german-wordwall:bookmarks:${FILE_URL}`;
+// current data file (can be switched at runtime)
+const DEFAULT_FILE = '/mnt/data/file-3.txt';
+let currentFile = DEFAULT_FILE;
+let STORAGE_KEY = '';
+let BOOKMARKS_KEY = '';
+function updateKeys(){
+  STORAGE_KEY = `german-wordwall:${currentFile}`;
+  BOOKMARKS_KEY = `german-wordwall:bookmarks:${currentFile}`;
+}
+updateKeys();
 
 const state = {
   themes: [],
@@ -192,8 +199,8 @@ function evaluateChoice(btn){
 }
 
 /* ----------------- Score persistence ----------------- */
-function saveScores(){ try{ localStorage.setItem(`german-wordwall:scores:${FILE_URL}`, JSON.stringify(state.scores||{correct:0,wrong:0})); }catch(e){} }
-function loadScores(){ try{ state.scores = JSON.parse(localStorage.getItem(`german-wordwall:scores:${FILE_URL}`)) || {correct:0,wrong:0}; }catch(e){ state.scores={correct:0,wrong:0}; } }
+function saveScores(){ try{ localStorage.setItem(`german-wordwall:scores:${currentFile}`, JSON.stringify(state.scores||{correct:0,wrong:0})); }catch(e){} }
+function loadScores(){ try{ state.scores = JSON.parse(localStorage.getItem(`german-wordwall:scores:${currentFile}`)) || {correct:0,wrong:0}; }catch(e){ state.scores={correct:0,wrong:0}; } }
 function updateScoreChip(){ const chip = document.getElementById('scoreChip'); if(!chip) return; const s=state.scores||{correct:0,wrong:0}; chip.textContent = `${s.correct} ✅ / ${s.wrong} ❌`; }
 
 /* ----------------- Live region ----------------- */
@@ -249,6 +256,37 @@ function bindControls(){
     }
   });
 
+  // study button(s)
+  if(el.vPerfBtn){
+    el.vPerfBtn.addEventListener('click', ()=>{
+      const file = el.vPerfBtn.dataset.file;
+      if(!file) return;
+      // toggle behavior: if already on this file, switch back to default
+      if(currentFile === file){
+        switchStudy(DEFAULT_FILE);
+        el.vPerfBtn.classList.remove('active');
+      } else {
+        switchStudy(file);
+        // visual active state
+        document.querySelectorAll('.study-btn').forEach(b=>b.classList.remove('active'));
+        el.vPerfBtn.classList.add('active');
+      }
+    });
+  }
+
+
+function switchStudy(file){
+  if(!file) return;
+  if(currentFile === file) return; // already selected
+  currentFile = file;
+  updateKeys();
+  // reset index for new dataset
+  state.index = 0;
+  saveIndex();
+  loadScores();
+  updateScoreChip();
+  loadFile();
+}
     // hint button should reveal examples for the current visible card (show, not toggle)
   if(el.hint){
     function showExamplesForCurrent(){
@@ -377,7 +415,7 @@ function bindControls(){
 /* ----------------- Fetch + initialize ----------------- */
 async function loadFile(){
   try{
-    const res = await fetch(FILE_URL);
+    const res = await fetch(currentFile);
     const raw = await res.text();
     const plain = rtfToText(raw);
     state.themes = parseNewFormat(plain);
@@ -398,6 +436,7 @@ function init(){
   el.cardsRoot = q('cardsRoot');
   el.countChip = q('countChip');
   el.hint = q('hint');
+  el.vPerfBtn = q('vPerfBtn');
   el.progressFill = q('progressFill');
   el.nextBtn = q('nextBtn');
   el.prevBtn = q('prevBtn');
