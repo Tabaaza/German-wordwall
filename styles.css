@@ -25,7 +25,7 @@ body {-webkit-overflow-scrolling: touch;overscroll-behavior: none;padding: env(s
 .viewer {max-height: 100dvh; /* Use dvh instead of custom --vh */width: min(720px, 96vw); height: min(820px, 92dvh); /* Use dvh */border-radius:var(--radius);overflow:hidden;background:linear-gradient(180deg,var(--card-bg),rgba(255,255,255,0.01));box-shadow:0 18px 60px rgba(3,8,20,0.6);position:relative;display:flex;flex-direction:column;-webkit-overflow-scrolling: touch; overscroll-behavior: contain;}
 
 .header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px}
-.header .chips{display:flex;gap:8px;align-items:center}
+.header .chips{display:flex;gap:6px;align-items:center}
 .chip{background:var(--glass);padding:8px 12px;border-radius:999px;font-size:13px;color:var(--muted)}
 .hint{font-size:9px;color:#f7f7f7;background:rgba(95, 41, 182, 0.47);padding:8px 12px;border-radius:10px;cursor:pointer;border:1px solid rgba(255,255,255,0.06)}
 .hint:focus{outline:3px solid rgba(95,41,182,0.18);box-shadow:0 4px 18px rgba(95,41,182,0.12)}
