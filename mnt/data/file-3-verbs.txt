@@ -1,0 +1,295 @@
+* 1.  German Verbs Perfekt
+
+* lernen / haben gelernt - to learn
+
+* Satz: Ich habe ein neues Wort gelernt.
+
+* Translation: I learned a new word.
+
+* machen / haben gemacht - to do/make
+
+* Satz: Ich habe meine Hausaufgaben gemacht.
+
+* Translation: I did my homework.
+
+* spielen / haben gespielt - to play
+
+* Satz: Ich habe gestern Fußball gespielt.
+
+* Translation: I played soccer yesterday.
+
+* arbeiten / haben gearbeitet - to work
+
+* Satz: Ich habe den ganzen Tag gearbeitet.
+
+* Translation: I worked all day.
+
+* gehen / sein gegangen - to go
+
+* Satz: Ich bin gestern ins Kino gegangen.
+
+* Translation: I went to the cinema yesterday.
+
+* kommen / sein gekommen - to come
+
+* Satz: Ich bin früh nach Hause gekommen.
+
+* Translation: I came home early.
+
+* trinken / haben getrunken - to drink
+
+* Satz: Ich habe einen Kaffee getrunken.
+
+* Translation: I drank a coffee.
+
+* essen / haben gegessen - to eat
+
+* Satz: Ich habe Pizza gegessen.
+
+* Translation: I ate pizza.
+
+* schlafen / haben geschlafen - to sleep
+
+* Satz: Ich habe acht Stunden geschlafen.
+
+* Translation: I slept eight hours.
+
+* fahren / sein gefahren - to drive/go
+
+* Satz: Ich bin nach Berlin gefahren.
+
+* Translation: I went to Berlin.
+
+* finden / haben gefunden - to find
+
+* Satz: Ich habe meine Schlüssel gefunden.
+
+* Translation: I found my keys.
+
+* helfen / haben geholfen - to help
+
+* Satz: Ich habe meinem Freund geholfen.
+
+* Translation: I helped my friend.
+
+* sagen / haben gesagt - to say
+
+* Satz: Ich habe die Wahrheit gesagt.
+
+* Translation: I told the truth.
+
+* fragen / haben gefragt - to ask
+
+* Satz: Ich habe eine Frage gestellt.
+
+* Translation: I asked a question.
+
+* antworten / haben geantwortet - to answer
+
+* Satz: Ich habe sofort geantwortet.
+
+* Translation: I answered immediately.
+
+* kaufen / haben gekauft - to buy
+
+* Satz: Ich habe ein neues Handy gekauft.
+
+* Translation: I bought a new phone.
+
+* schreiben / haben geschrieben - to write
+
+* Satz: Ich habe eine E-Mail geschrieben.
+
+* Translation: I wrote an email.
+
+* lesen / haben gelesen - to read
+
+* Satz: Ich habe das Buch gelesen.
+
+* Translation: I read the book.
+
+* bleiben / sein geblieben - to stay
+
+* Satz: Ich bin zu Hause geblieben.
+
+* Translation: I stayed at home.
+
+* bringen / haben gebracht - to bring
+
+* Satz: Ich habe dir ein Geschenk gebracht.
+
+* Translation: I brought you a gift.
+
+* denken / haben gedacht - to think
+
+* Satz: Ich habe an dich gedacht.
+
+* Translation: I thought of you.
+
+* vergessen / haben vergessen - to forget
+
+* Satz: Ich habe deinen Namen vergessen.
+
+* Translation: I forgot your name.
+
+* beginnen / haben begonnen - to begin
+
+* Satz: Der Kurs hat gestern begonnen.
+
+* Translation: The course began yesterday.
+
+* laufen / sein gelaufen - to run
+
+* Satz: Ich bin fünf Kilometer gelaufen.
+
+* Translation: I ran five kilometers.
+
+* stehen / haben gestanden - to stand
+
+* Satz: Ich habe eine Stunde gestanden.
+
+* Translation: I stood for an hour.
+
+* sitzen / haben gesessen - to sit
+
+* Satz: Ich habe lange im Büro gesessen.
+
+* Translation: I sat in the office for a long time.
+
+* treffen / haben getroffen - to meet
+
+* Satz: Ich habe meine Freunde getroffen.
+
+* Translation: I met my friends.
+
+* kennen / haben gekannt - to know
+
+* Satz: Ich habe ihn seit Jahren gekannt.
+
+* Translation: I have known him for years.
+
+* wissen / haben gewusst - to know
+
+* Satz: Ich habe die Antwort gewusst.
+
+* Translation: I knew the answer.
+
+* verlieren / haben verloren - to lose
+
+* Satz: Ich habe meinen Pass verloren.
+
+* Translation: I lost my passport.
+
+* gewinnen / haben gewonnen - to win
+
+* Satz: Ich habe das Spiel gewonnen.
+
+* Translation: I won the game.
+
+* suchen / haben gesucht - to search
+
+* Satz: Ich habe meine Tasche gesucht.
+
+* Translation: I searched for my bag.
+
+* bezahlen / haben bezahlt - to pay
+
+* Satz: Ich habe die Rechnung bezahlt.
+
+* Translation: I paid the bill.
+
+* bestellen / haben bestellt - to order
+
+* Satz: Ich habe ein Taxi bestellt.
+
+* Translation: I ordered a taxi.
+
+* telefonieren / haben telefoniert - to call
+
+* Satz: Ich habe mit meiner Mutter telefoniert.
+
+* Translation: I called my mother.
+
+* kochen / haben gekocht - to cook
+
+* Satz: Ich habe Pasta gekocht.
+
+* Translation: I cooked pasta.
+
+* putzen / haben geputzt - to clean
+
+* Satz: Ich habe die Wohnung geputzt.
+
+* Translation: I cleaned the apartment.
+
+* reisen / sein gereist - to travel
+
+* Satz: Ich bin nach Spanien gereist.
+
+* Translation: I traveled to Spain.
+
+* umziehen / sein umgezogen - to move
+
+* Satz: Ich bin in eine neue Wohnung umgezogen.
+
+* Translation: I moved to a new apartment.
+
+* aufstehen / sein aufgestanden - to get up
+
+* Satz: Ich bin früh aufgestanden.
+
+* Translation: I got up early.
+
+* aufmachen / haben aufgemacht - to open
+
+* Satz: Ich habe die Tür aufgemacht.
+
+* Translation: I opened the door.
+
+* zumachen / haben zugemacht - to close
+
+* Satz: Ich habe das Fenster zugemacht.
+
+* Translation: I closed the window.
+
+* anfangen / haben angefangen - to start
+
+* Satz: Ich habe ein neues Projekt angefangen.
+
+* Translation: I started a new project.
+
+* fernsehen / haben ferngesehen - to watch TV
+
+* Satz: Ich habe gestern ferngesehen.
+
+* Translation: I watched TV yesterday.
+
+* mitkommen / sein mitgekommen - to come along
+
+* Satz: Ich bin mit meinen Freunden mitgekommen.
+
+* Translation: I came along with my friends.
+
+* mitnehmen / haben mitgenommen - to take along
+
+* Satz: Ich habe meinen Laptop mitgenommen.
+
+* Translation: I took my laptop with me.
+
+* abholen / haben abgeholt - to pick up
+
+* Satz: Ich habe das Paket abgeholt.
+
+* Translation: I picked up the package.
+
+* schwimmen / sein geschwommen - to swim
+
+* Satz: Ich bin im See geschwommen.
+
+* Translation: I swam in the lake.
+
+* stehenbleiben / sein stehengeblieben - to stop
+
+* Satz: Ich bin plötzlich stehengeblieben.
+
+* Translation: I suddenly stopped.
