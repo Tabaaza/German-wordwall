@@ -278,11 +278,12 @@ function bindControls(){
 function switchStudy(file){
   if(!file) return;
   if(currentFile === file) return; // already selected
+  // persist current index for the current file before switching
+  try{ saveIndex(); }catch(e){}
+
   currentFile = file;
   updateKeys();
-  // reset index for new dataset
-  state.index = 0;
-  saveIndex();
+  // load scores/bookmarks for the new dataset; loadFile will restore the saved index
   loadScores();
   updateScoreChip();
   loadFile();
